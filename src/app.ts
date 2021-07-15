@@ -1,12 +1,20 @@
-import { PORT, app } from './constants';
-import { getFile, createFile, updateFile, removeFile } from './controllers/methods';
+import express, { Application } from 'express';
+import { PORT } from './constants';
+import {
+  getFile,
+  createFile,
+  updateFile,
+  removeFile,
+} from './controllers/methods';
+const app: Application = express();
 
-app.route('/')
+app
+  .route('/')
   .get(getFile)
   .post(createFile)
   .patch(updateFile)
-  .delete(removeFile)
+  .delete(removeFile);
 
-app.listen(PORT,() => {
-  console.log(`Server running on port: ${PORT}`)
+app.listen(PORT, () => {
+  console.log(`Server running on port: ${PORT}`);
 });
